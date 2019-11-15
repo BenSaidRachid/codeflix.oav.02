@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { Transform } = require("stream");
-const { getName } = require("./helper");
+const {getName} = require("./helper");
 
 function transform(filename, re, fn) {
     const rstream = fs.createReadStream(filename);

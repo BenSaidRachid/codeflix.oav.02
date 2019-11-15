@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { Transform } = require("stream");
-const getName  = require("./helper");
+const {getName} = require("./helper");
 
 function transformStdout(filename, re, fn, inStdout = true) {
     const rstream = fs.createReadStream(filename);
@@ -11,7 +11,7 @@ function transformStdout(filename, re, fn, inStdout = true) {
             content += chunk.toString().replace(re, str => fn(str));
         })
 
-        rstream.on("data", () => {
+        rstream.on("end", () => {
             console.log(content)
         })
     } else {

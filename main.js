@@ -1,4 +1,4 @@
-const { duplicate , transformStdout} = require("./streambox")
+const { csv2json } = require("./streambox")
 
 const args = process.argv.slice(2);
 
@@ -9,4 +9,4 @@ if(args.length !== 1) {
 
 const filename = args[0];
 
-duplicate(filename)
+csv2json(filename)

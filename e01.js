@@ -1,5 +1,5 @@
 const fs = require('fs');
-const getName  = require("./helper");
+const {getName} = require("./helper");
 
 function duplicate(filename) {
     const rstream = fs.createReadStream(filename);
