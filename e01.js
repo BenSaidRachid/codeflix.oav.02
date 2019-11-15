@@ -1,12 +1,9 @@
 const fs = require('fs');
-const path = require("path");
+const getName  = require("./helper");
 
 function duplicate(filename) {
-    const ext = path.extname(filename);
-    const base = path.basename(filename, ext);
-    const duplicateFilename = `${base}.duplicate${ext}`;
     const rstream = fs.createReadStream(filename);
-    const wstream = fs.createWriteStream(duplicateFilename);
+    const wstream = fs.createWriteStream(getName(filename, ".duplicate"));
     
     rstream.pipe(wstream);
     console.log(`File: ${filename} successfully duplicated!`)

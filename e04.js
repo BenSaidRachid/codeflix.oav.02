@@ -1,8 +1,9 @@
 const fs = require('fs');
 const { Transform } = require("stream");
-const getName  = require("./helper");
+const { getName } = require("./helper");
 
-function transformStdout(filename, re, fn, inStdout = true) {
+function csv2json(filename) {
+    getName(getName, "");
     const rstream = fs.createReadStream(filename);
 
     if(inStdout) {
@@ -15,7 +16,7 @@ function transformStdout(filename, re, fn, inStdout = true) {
             console.log(content)
         })
     } else {
-        const wstream = fs.createWriteStream(getName(filename, ".transform"));
+        const wstream = fs.createWriteStream(transformFilename);
         const tstream = new Transform({
             transform(chunk, encoding, callback) {
                 this.push(chunk.toString().replace(re, str => fn(str)));
@@ -24,6 +25,7 @@ function transformStdout(filename, re, fn, inStdout = true) {
         })
         rstream.pipe(tstream).pipe(wstream);
     }
+ 
 }
 
 module.exports = {
